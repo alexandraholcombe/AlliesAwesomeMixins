@@ -1,0 +1,73 @@
+//## Common Mixins
+
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+
+//## Link Mixins
+
+// General link use
+@mixin anchor-styles($color: false, $hover-color: false) {
+  @if $color {
+    color: $color;
+  }
+
+  @if $hover-color {
+    &:hover {
+      color: $hover-color;
+    }
+  }
+}
+
+// When you hover, text turns bold
+@mixin hover-bold {
+  &:hover {
+    font-weight: bold;
+  }
+}
+
+// When you hover, an underline will swipe left to right
+// (requires that parent element has a position property)
+@mixin hover-fancy-underline($color) {
+  &::after {
+    content: '';
+    display: block;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: $color;
+
+    @include transition(all 0.3s);
+  }
+
+  &:hover::after,
+  &:focus::after {
+    width: 100%;
+    text-decoration: none;
+  }
+}
+
+// When you focus, transitions to other color
+// (use if hover behavior is complex, like underline)
+@mixin focus-color-fade($color) {
+  @include transition(all 0.3s);
+
+  &:focus {
+    color: $color;
+  }
+}
+
+// When you hover, transitions to other color
+@mixin hover-color-fade($color) {
+  @include transition(all 0.3s);
+
+  &:hover,
+  &:focus {
+    color: $color;
+  }
+}

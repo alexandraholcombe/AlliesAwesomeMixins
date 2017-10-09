@@ -1,0 +1,75 @@
+//## Common Mixins
+
+.transition(@args) {
+  -webkit-transition: @args;
+  -moz-transition: @args;
+  -ms-transition: @args;
+  -o-transition: @args;
+  transition: @args;
+}
+
+//## Link Mixins
+
+// General link use
+.anchor-styles(@color: false, @hover-color: false) {
+  & when not (@color = false) {
+    color: @color;
+  }
+
+  & when not (@hover-color = false) {
+    &:hover {
+      color: @hover-color;
+    }
+  }
+}
+
+// When you hover, text turns bold
+.hover-bold {
+  &:hover {
+    font-weight: bold;
+  }
+}
+
+// When you hover, an underline will swipe left to right
+// (requires that parent element has a position property)
+.hover-fancy-underline(@color) {
+  &::after {
+    content: '';
+    display: block;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: @color;
+
+    .transition(all 0.3s);
+  }
+
+  &:hover::after,
+  &:focus::after {
+    width: 100%;
+    text-decoration: none;
+  }
+}
+
+// When you focus, transitions to other color
+// (use if hover behavior is complex, like underline)
+.focus-color-fade(@color) {
+  .transition(all 0.3s);
+
+  &:focus {
+    color: @color;
+  }
+}
+
+// When you hover, transitions to other color
+.hover-color-fade(@color) {
+  .transition(all 0.3s);
+
+  &:hover,
+  &:focus {
+    color: @color;
+  }
+}
+
+

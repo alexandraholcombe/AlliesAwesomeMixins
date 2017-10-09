@@ -1,0 +1,71 @@
+/* ==========================================================================
+   Utility Classes
+   ========================================================================== */
+
+/* Anchor (Link) Styles
+   ========================================================================== */
+
+/* Link bolds on hover */
+a.hover-bold:hover {
+  font-weight: bold;
+}
+
+/* 
+ * ~~HOVER FANCY UNDERLINE~~
+ * On hover, underline appears, swiping left to right
+ */
+a.hover-fancy-underline::after {
+  content: '';
+  display: block;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: red;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+a.hover-fancy-underline:hover::after,
+a.hover-fancy-underline:focus::after {
+  width: 100%;
+  text-decoration: none;
+}
+
+/* 
+ * ~~HOVER COLOR FADE~~
+ * When link is focused or hovered, transitions to other color
+ */
+a.hover-color-fade {
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+a.hover-color-fade:hover,
+a.hover-color-fade:focus {
+  color: red;
+}
+
+/* 
+ * ~~FOCUS COLOR FADE~~
+ * When link is focused, transitions to other color
+ * (use if hover behavior is complex, like underline)
+ */
+a.focus-color-fade {
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+a.focus-color-fade:focus {
+  color: red;
+}
+
